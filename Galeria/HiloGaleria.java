@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class HiloGaleria extends JLabel implements Runnable {
 	
 	private Thread hilo;	
-	private Galeria ga; 
+	private Clase_Galeria ga; 
 	private final int TIEMPO_ENTRE_FOTOS;
 	//--------------------
 	private int fotoActual;
@@ -16,7 +16,7 @@ public class HiloGaleria extends JLabel implements Runnable {
 	private boolean pausado;
 	private boolean terminado;
 	
-	public HiloGaleria(String nombre, int prioridad, ThreadGroup gl, Galeria galeria1, String etiqueta) {
+	public HiloGaleria(String nombre, int prioridad, ThreadGroup gl, Clase_Galeria galeria1, String etiqueta) {
 		super(etiqueta);
 		TIEMPO_ENTRE_FOTOS = 3000; //3 segundos
 		hilo = new Thread(gl,this, nombre);
@@ -82,7 +82,7 @@ public class HiloGaleria extends JLabel implements Runnable {
 	}
 
 	private synchronized void mostrarFotos() {
-		Foto f = this.ga.getFotos().get(this.fotoActual); 
+		Clase_Foto f = this.ga.getFotos().get(this.fotoActual); 
 		System.out.println("Mostrando la foto -->" +f.toString());
 		this.fotoActual = (this.fotoActual+1)% this.ga.getFotos().size();
 		ImageIcon img = new ImageIcon(getClass().getResource("imagenes/" +f.getNombreFichero()));
